@@ -29,13 +29,14 @@ router = Router()
 async def cmd_reply_builder(message: Message, command: CommandObject):
     num = command.args
     builder = ReplyKeyboardBuilder()
-    for i in range(1,int(num)+1):
+    for i in range(1, int(num) + 1):
         builder.add(types.KeyboardButton(text=str(i)))
-    builder.adjust(4,3,2,1)
+    builder.adjust(4, 3, 2, 1)
     await message.answer(
         "done",
         reply_markup=builder.as_markup(resize_keyboard=False, one_time_keyboard=True),
     )
+
 
 @router.message(Command("start"))
 async def cmd_start(message: types.Message):

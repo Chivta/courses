@@ -69,12 +69,12 @@ async def get_random_image(message: Message, command: CommandObject) -> None:
     size = command.args.split()
     if len(size) != 2:
         await message.answer(f'Required 2 params but {len(size)} given')
-
-    image_from_url = URLInputFile(f"https://random.imagecdn.app/{size[0]}/{size[1]}")
-    try:
-        await message.answer_photo(image_from_url)
-    except TelegramBadRequest:
-        await message.answer('Photo invalid dimensions')
+    else:
+        image_from_url = URLInputFile(f"https://random.imagecdn.app/{size[0]}/{size[1]}")
+        try:
+            await message.answer_photo(image_from_url)
+        except TelegramBadRequest:
+            await message.answer('Photo invalid dimensions')
 
 
 async def main() -> None:
